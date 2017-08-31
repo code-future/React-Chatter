@@ -1,5 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as firebase from 'firebase';
+
+// DON'T TOUCH OR YOUR APP WONT WORK!!
+const config = {
+  apiKey: "AIzaSyBq1tDlekRh3VOmGB33bOLYetSEGatzOLI",
+  authDomain: "react-chatter-eb1d8.firebaseapp.com",
+  databaseURL: "https://react-chatter-eb1d8.firebaseio.com",
+  projectId: "react-chatter-eb1d8",
+  storageBucket: "react-chatter-eb1d8.appspot.com",
+  messagingSenderId: "288841009491"
+};
+firebase.initializeApp(config);
 
 import 'semantic-ui-css/semantic.min.css';
 import './stylesheets/main.scss';
