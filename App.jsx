@@ -25,11 +25,11 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      usernameInput: '',
-      chatInput: '',
-      chats: [],
-      username: '',
-      showModal: false
+      usernameInput: '', //the value for the the username input in UserModal
+      chatInput: '', //value for input in ChatInput
+      chats: [], //list of chats from Firebase
+      username: '', //Current username
+      showModal: false //Flag for turning on the modal
     }
     this.closeModal = this.closeModal.bind(this)
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
@@ -37,13 +37,26 @@ class App extends React.Component {
     this.logout = this.logout.bind(this)
   }
   componentDidMount() {
-    const user = localStorage.getItem('chatter-user')
-    if (user) {
-      this.setState({username: user})
-    } else {
-      //Show modal
-      this.setState({showModal: true});
-    }
+    //This code connects to Firebase and fetches our list of messages.
+    var messages = [];
+    var that = this;
+    firebase.database()
+    .ref('messages')
+    .orderByKey()
+    .limitToLast(30)
+    .on('value', function(snapshot) {
+      //This callback is fired everytime a new message is put in
+      messages = Object.values(snapshot.val() || [])
+
+      //This code handles the logic for our "login"
+      const user = localStorage.getItem('chatter-user')
+      if (user) {
+        that.setState({username: user, chats: messages})
+      } else {
+        //Show modal
+        that.setState({showModal: true, chats: messages});
+      }
+    })
   }
   closeModal() {
     //Set username input to localhost so our browser will remember the user
