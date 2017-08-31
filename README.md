@@ -60,7 +60,7 @@ Make sure you have a basic understanding of these topics!
    a. First order of business: this is a chat app, so we need to be able to see the chats. We're using 
    [Firebase](https://firebase.google.com/) as our way of storing chats. Your task is to connect to our Firebase using the `firebase` node module.
    
-   b. Start at `App.jsx`. We've already initialized Firebase and connected to our messages database and set the messages to the state in componentDidMount. 
+   b. Start at `App.jsx`. We've already initialized Firebase and connected to our messages database and set the messages to `this.state.chats` in componentDidMount. 
    
    - [ ] Start by passing `this.state.chats` as (props)[https://facebook.github.io/react/docs/components-and-props.html] to `ChatList`.
    
