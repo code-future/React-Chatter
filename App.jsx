@@ -72,6 +72,9 @@ class App extends React.Component {
     })
   }
   handleUsernameChange(e) {
+    if(e.keyCode === 13){
+      this.closeModal();
+    }
     this.setState({usernameInput: e.target.value})
   }
   handleChatChange(e) {
