@@ -28,15 +28,6 @@ export default class ChatInput extends React.Component {
     if (e.key === 'Enter') {
       this.sendChat();
     }
-<<<<<<< HEAD
-  }
-  handleKeyPress(e) {
-    //Lets us use Enter for sending messages!
-    if (e.key === 'Enter') {
-      this.sendChat();
-    }
-=======
->>>>>>> dbf33c30e8302184c829ff0abdecdad2b8b2b009
   }
   render() {
     return (
