@@ -5,11 +5,11 @@ In this project, you'll be building out the main features of a realtime chat app
 
 ## Concepts
 Make sure you have a basic understanding of these topics!
-[] React
-[] ES6
-[] Firebase
-[] Network requests
-[] Node/NPM
+- [ ] React
+- [ ] ES6
+- [ ] Firebase
+- [ ] Network requests
+- [ ] Node/NPM
 
 ## Steps:
 0. Setup
