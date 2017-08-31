@@ -38,13 +38,18 @@ class App extends React.Component {
     this.logout = this.logout.bind(this)
   }
   componentDidMount() {
+    //This code connects to Firebase and fetches our list of messages.
     var messages = [];
     var that = this;
     firebase.database()
     .ref('messages')
+    .orderByKey()
+    .limitToLast(30)
     .on('value', function(snapshot) {
+      //This callback is fired everytime a new message is put in
       messages = Object.values(snapshot.val() || [])
 
+      //This code handles the logic for our "login"
       const user = localStorage.getItem('chatter-user')
       if (user) {
         that.setState({username: user, chats: messages})
@@ -53,8 +58,6 @@ class App extends React.Component {
         that.setState({showModal: true, chats: messages});
       }
     })
-
-    
   }
   clearChat() {
     this.setState({chatInput: ''})
@@ -69,9 +72,6 @@ class App extends React.Component {
     })
   }
   handleUsernameChange(e) {
-    if(e.keyCode === 13){
-      this.closeModal();
-    }
     this.setState({usernameInput: e.target.value})
   }
   handleChatChange(e) {
