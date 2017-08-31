@@ -20,7 +20,7 @@ Make sure you have a basic understanding of these topics!
    
    c. Open the folder in your favorite text editor.
    
-   d. Start the app with `npm start`. In Chrome/Firefox, go to `localhost:8080`. 
+   d. Start the app with `npm start`. In Chrome/Firefox, go to `localhost:8080`. Hot reload is enabled, which means when you make a change to the file the app will automatically rebuild and your browser will refresh `localhost:8080`!!
    
    e. Up and running 🚀
    
