@@ -15,7 +15,7 @@ Concepts:
 -
 
 ## Steps:
-0. Lets get set up
+0. First, make sure you clone the repo on your computer. `git clone 
 1. Replace the chats with the real chats from the server
 2. Allow user to send chats
 
