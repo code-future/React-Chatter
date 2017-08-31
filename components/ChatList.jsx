@@ -7,17 +7,18 @@ export default class ChatList extends React.Component {
     super(props);
   }
   render() {
+    var feed = this.props.chats.map(function(x, i) {
+      return (
+        <Feed.Event key={i}
+          summary={x.username}
+          extraText={x.text}
+        />
+      )
+    })
     return (
       <div id="chat-list">
         <Feed>
-          <Feed.Event
-            summary={'Zack'}
-            extraText={'Make sure you read the README!'}
-          />
-          <Feed.Event
-            summary={'Zack'}
-            extraText={'Good luck'}
-          />
+         {feed}
         </Feed>
       </div>
     )

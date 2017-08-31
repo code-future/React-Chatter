@@ -32,18 +32,32 @@ class App extends React.Component {
       showModal: false
     }
     this.closeModal = this.closeModal.bind(this)
+    this.clearChat = this.clearChat.bind(this)
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handleChatChange = this.handleChatChange.bind(this)
     this.logout = this.logout.bind(this)
   }
   componentDidMount() {
-    const user = localStorage.getItem('chatter-user')
-    if (user) {
-      this.setState({username: user})
-    } else {
-      //Show modal
-      this.setState({showModal: true});
-    }
+    var messages = [];
+    var that = this;
+    firebase.database()
+    .ref('messages')
+    .on('value', function(snapshot) {
+      messages = Object.values(snapshot.val() || [])
+
+      const user = localStorage.getItem('chatter-user')
+      if (user) {
+        that.setState({username: user, chats: messages})
+      } else {
+        //Show modal
+        that.setState({showModal: true, chats: messages});
+      }
+    })
+
+    
+  }
+  clearChat() {
+    this.setState({chatInput: ''})
   }
   closeModal() {
     //Set username input to localhost so our browser will remember the user
@@ -55,6 +69,9 @@ class App extends React.Component {
     })
   }
   handleUsernameChange(e) {
+    if(e.keyCode === 13){
+      this.closeModal();
+    }
     this.setState({usernameInput: e.target.value})
   }
   handleChatChange(e) {
@@ -78,8 +95,8 @@ class App extends React.Component {
             <Button onClick={this.logout} inverted color='red'>Logout</Button>
           </Header>
 
-          <ChatList />
-          <ChatInput />
+          <ChatList chats={this.state.chats} />
+          <ChatInput chatInput={this.state.chatInput} clearChat={this.clearChat} handleChange={this.handleChatChange} username={this.state.username} />
         </Container>
         <UserModal showModal={this.state.showModal} usernameInput={this.state.usernameInput} handleChange={this.handleUsernameChange} closeModal={this.closeModal} />
       </div>
