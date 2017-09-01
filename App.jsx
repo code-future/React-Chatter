@@ -35,6 +35,7 @@ class App extends React.Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handleChatChange = this.handleChatChange.bind(this)
     this.logout = this.logout.bind(this)
+    this.clearInput = this.clearInput.bind(this)
   }
   componentDidMount() {
     //This code connects to Firebase and fetches our list of messages.
@@ -80,6 +81,9 @@ class App extends React.Component {
       username: ''
     })
   }
+  clearInput() {
+    this.setState({chatInput: ''})
+  }
   render() {
     return (
       <div id="app-container">
@@ -91,8 +95,8 @@ class App extends React.Component {
             <Button onClick={this.logout} inverted color='red'>Logout</Button>
           </Header>
 
-          <ChatList />
-          <ChatInput />
+          <ChatList chats = {this.state.chats}/>
+          <ChatInput clearInput = {this.clearInput} onchange = {this.handleChatChange} chatInput = {this.state.chatInput} username = {this.state.username}/>
         </Container>
         <UserModal showModal={this.state.showModal} usernameInput={this.state.usernameInput} handleChange={this.handleUsernameChange} closeModal={this.closeModal} />
       </div>

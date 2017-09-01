@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input } from 'semantic-ui-react';
+import * as firebase from 'firebase';
 
 export default class ChatInput extends React.Component {
   constructor(props) {
@@ -10,6 +11,13 @@ export default class ChatInput extends React.Component {
   }
   sendChat() {
     //Fill this out
+    const message = {'text': this.props.chatInput, 'time': Date.now(), 'username': this.props.username}
+    const newMsgRef = firebase.database()
+                               .ref('messages')
+                               .push();
+     message.id = newMsgRef.key;
+     newMsgRef.set(message);
+     this.props.clearInput();
   }
   handleKeyPress(e) {
     //Lets us use Enter for sending messages!
@@ -19,7 +27,7 @@ export default class ChatInput extends React.Component {
   }
   render() {
     return (
-      <Input onKeyPress={this.handleKeyPress} fluid action={{ color: 'blue', content: 'Send', 'onClick': this.sendChat}} placeholder='Enter a chat' />
+      <Input value = {this.props.chatInput} onChange = {this.props.onchange} onKeyPress={this.handleKeyPress} fluid action={{ color: 'blue', content: 'Send', 'onClick': this.sendChat}} placeholder='Enter a chat' />
       )
   }
 }
