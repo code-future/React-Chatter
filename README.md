@@ -66,7 +66,7 @@ Make sure you have a basic understanding of these topics!
    
    - [ ] Go into `ChatList.jsx` and make sure you passed in the right value by `console.log`ging the list (that you passed into props) in the `render()` of ChatList. Make sure to have your browser console open to see the log! Really study the structure of the data
    
-   - [ ] Under the `console.log` statement, create a variable that is equal to a transformed list of chats. Use the built-in `map` method to transform the list of objects into a list of JSX elements. See (this)[https://facebook.github.io/react/docs/lists-and-keys.html] for more help
+   - [ ] Under the `console.log` statement, create a variable that is equal to a transformed list of chats. Use the built-in `map` method to transform the list of objects into a list of JSX elements. You're going to want to return the `<Feed.Event />`  See (this)[https://facebook.github.io/react/docs/lists-and-keys.html] for more help
    
    - [ ] Substitute the `<Feed.Event>` tags that we have prewritten for you with your variable that equals the transformed list. Make sure to put `{ }` around it so that the JSX can recognize it as JavaScript!
    
@@ -76,7 +76,7 @@ Make sure you have a basic understanding of these topics!
    
    a. Now we need to allow the user to send chats. Go to `ChatInput.jsx` and read through the source code. 
    
-   - [ ] Create an object called `message` that has 3 keys:
+   - [ ] Create an object called `message` in the `sendChat` function that has 3 keys:
       - `text`: the text of the message (in this case the value of the chat input)
       - `time`: set it to `Date.now()`
       - `username`: the username of the sender
@@ -92,7 +92,9 @@ Make sure you have a basic understanding of these topics!
     newMsgRef.set(message);
     ```
     
-    - [ ] Test out your chat! Bonus: if you want to clear out your chat input after you send a message, create a function in `App.jsx` that clears `this.state.chatInput` and then pass that function into `ChatInput` as props.
+    - [ ] Make sure to import firebase at the top of the file!
+    
+    - [ ] Test out your chat! Bonus: if you want to clear out your chat input after you send a message, create a function in `App.jsx` that clears `this.state.chatInput` and then pass that function into `ChatInput` as props. Be sure to remeber to bind the function in the constructor of `App`!
     
     
 Bonus:
